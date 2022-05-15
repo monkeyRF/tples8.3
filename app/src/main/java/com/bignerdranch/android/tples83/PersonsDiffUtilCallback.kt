@@ -21,7 +21,7 @@ class PersonsDiffUtilCallback(
         return when {
             oldList[oldItemPosition].id != newList[newItemPosition].id -> {false}
             oldList[oldItemPosition].fullName != newList[newItemPosition].fullName -> {false}
-            oldList[oldItemPosition].like != newList[newItemPosition].like -> {true}
+            oldList[oldItemPosition].like != newList[newItemPosition].like -> {false}
             else -> true
         }
 
