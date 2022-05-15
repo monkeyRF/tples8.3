@@ -2,6 +2,7 @@ package com.bignerdranch.android.tples83
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlin.random.Random
 
 class MainActivityViewModel: ViewModel() {
 
@@ -9,7 +10,8 @@ class MainActivityViewModel: ViewModel() {
 
     fun addPerson() {
         person.value = person.value?.toMutableList()?.apply {
-            add(Person.getMockPersons().random())
+            val tempPerson = Person.getMockPersons().random()
+            add(Person(Random.nextLong(), tempPerson.fullName, tempPerson.photoUrl))
         }
     }
 

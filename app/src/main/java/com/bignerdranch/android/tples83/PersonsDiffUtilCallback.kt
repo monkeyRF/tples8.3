@@ -1,5 +1,6 @@
 package com.bignerdranch.android.tples83
 
+import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
 
 class PersonsDiffUtilCallback(
@@ -16,9 +17,13 @@ class PersonsDiffUtilCallback(
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        var flag = false
-        if (oldList[oldItemPosition].fullName == newList[newItemPosition].fullName || oldList[oldItemPosition].like == newList[newItemPosition].like) flag = true
-        return flag
+        //Log.i("TTT", "areContentsTheSame $oldItemPosition - $newItemPosition")
+        return when {
+            oldList[oldItemPosition].id != newList[newItemPosition].id -> {false}
+            oldList[oldItemPosition].fullName != newList[newItemPosition].fullName -> {false}
+            oldList[oldItemPosition].like != newList[newItemPosition].like -> {true}
+            else -> true
+        }
 
     }
 }

@@ -1,5 +1,6 @@
 package com.bignerdranch.android.tples83
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,6 @@ class PersonsAdapter(
 ): RecyclerView.Adapter<PersonsAdapter.PersonViewHolder>() {
 
     private val persons = mutableListOf<Person>()
-    //private val diffUtilCallback = PersonsDiffUtilCallback()
 
     class PersonViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val photoImageView: ImageView = itemView.findViewById(R.id.photo)
@@ -65,13 +65,17 @@ class PersonsAdapter(
 
     fun reload(data: List<Person>) {
 
+        Log.i("TTT",persons.toString())
+        Log.i("TTT",data.toString())
+
         val diffCallback = PersonsDiffUtilCallback(persons, data)
         val personsDiffResult = DiffUtil.calculateDiff(diffCallback)
 
         persons.clear()
         persons.addAll(data)
-        //personsDiffResult.dispatchUpdatesTo(this)
 
-        notifyDataSetChanged()
+        personsDiffResult.dispatchUpdatesTo(this)
+
+        //notifyDataSetChanged()
     }
 }
