@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.bumptech.glide.Glide
 
 class PersonsAdapter(
@@ -43,7 +44,7 @@ class PersonsAdapter(
                 .into(photoImageView)
 
             deleteButton.setOnClickListener{
-                deleteAction(position)
+                if (adapterPosition != NO_POSITION) deleteAction(position)
             }
 
             if (person.like) likeButton.setImageResource(R.drawable.ic_favorite)
